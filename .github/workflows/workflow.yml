@@ -47,6 +47,7 @@ jobs:
       - name: NPM Audit 
         run: |
           jf rt bce 
+          jf rt bag
           jf npmc --repo-resolve dro-npm-remote
           jf ca
           jf npm cache clean --force
@@ -89,11 +90,11 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: jfrog_docker_scan.sarif
-      #- name: Scan build
-      #  id: scan-build  
-      #  run: |
-      #     jf build-scan --fail=false 
-      #     jf build-scan --fail=false --vuln
+      - name: Scan build
+        id: scan-build  
+        run: |
+           jf build-scan --fail=false 
+           jf build-scan --fail=false --vuln
       - name: Create test evidence
         id: create-evd  
         run: |
