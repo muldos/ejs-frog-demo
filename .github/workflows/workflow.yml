@@ -92,8 +92,18 @@ jobs:
           image-ref: '${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}'
           format: 'cyclonedx'
           output: 'bom.xml' 	
+          scanners: 'vuln,secret'
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW'  
+      - name: Upload SBOM to Dependency Track 
+        uses: DependencyTrack/gh-upload-sbom@v3
+        with:
+          serverHostname: 'dtrack.davidrob.in'
+          apiKey: ${{ secrets.DT_API_KEY }}
+          projectName: 'ejs-demo-trivy'
+          projectVersion: '${{ github.run_number }}'
+          bomFilename: "bom.xml"
+          autoCreate: true          
       - name: Upload output to generate autofix
         uses: github/codeql-action/upload-sarif@v3
         with:
