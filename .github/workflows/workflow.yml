@@ -89,7 +89,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.28.0
         with:
-          image-ref: 'ejs-demo:${{ github.run_number }}'
+          image-ref: '${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}'
           format: 'cyclonedx'
           output: 'bom.xml' 	
           vuln-type: 'os,library'
