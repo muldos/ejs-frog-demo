@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCKER_REPO: 'dro-oci-dev-local'
-      IMAGE_NAME:   '
+      IMAGE_NAME: 'ejs-demo:${{ github.run_number }}'
       JF_URL: https://${{ vars.JF_HOST }}/
       JF_PROJECT: ${{ vars.JF_PROJECT_KEY }}
     outputs:
