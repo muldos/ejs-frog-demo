@@ -1,5 +1,4 @@
-FROM node:16.19.0
-ARG JF_TOKEN
+FROM node:22
 
 # Create app directory
 WORKDIR /usr/src/app
