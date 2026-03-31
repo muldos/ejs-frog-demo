@@ -85,25 +85,7 @@ jobs:
           jf docker pull ${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
           jf docker scan --fail=false  --threads=5 ${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }} --severity='HIGH,CRITICAL' --vuln --format=sarif > jfrog_docker_scan.sarif
           sed -i s/"\"uri\": \"\""/"\"uri\": \"${{ vars.JF_URL }}\/${{ env.DOCKER_REPO }}\/${{ env.IMAGE_NAME }}:${{ github.run_number }}\""/g jfrog_docker_scan.sarif
-        # adding the built docker into the JFrog build info
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.28.0
-        with:
-          image-ref: '${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}'
-          format: 'cyclonedx'
-          output: 'bom.xml' 	
-          scanners: 'vuln,secret'
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH,MEDIUM,LOW'  
-      #- name: Upload SBOM to Dependency Track 
-      #  uses: DependencyTrack/gh-upload-sbom@v3
-      #  with:
-      #   serverHostname: 'dtrack.davidrob.in'
-      #    apiKey: ${{ secrets.DT_API_KEY }}
-      #    projectName: 'ejs-demo-trivy'
-      #    projectVersion: '${{ github.run_number }}'
-      #    bomFilename: "bom.xml"
-      #    autoCreate: true          
+        # adding the built docker into the JFrog build info     
       - name: Upload output to generate autofix
         uses: github/codeql-action/upload-sarif@v3
         with:
