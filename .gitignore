@@ -1,3 +1,4 @@
 node_modules
 .jfrog
-.package-lock.json
+package-lock.json
+.vscode
