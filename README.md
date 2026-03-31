@@ -65,4 +65,6 @@ COSIGN_EXPERIMENTAL=1 cosign verify-attestation \
   --certificate-identity-regexp '^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$' \
   --policy policy.cue \
   changeme.jfrog.io/changeme-oci-dev-local/ejs-demo:243
+
+
 ```
