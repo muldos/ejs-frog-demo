@@ -25,9 +25,7 @@ jobs:
     # Here we install all the tools : docker buildx, QEMU, JDK 11, JFrog CLI
     steps:
       - name: Collect Workflow Transfer KPIs
-        uses: catchpoint/workflow-telemetry-action@v2
-        with:
-          theme: dark
+        uses: muldos/ci-traffic-monitor@v1
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       -
