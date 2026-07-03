@@ -96,7 +96,6 @@ jobs:
         id: scan-build  
         run: |
            jf build-scan --fail=false 
-           jf build-scan --fail=false --vuln
       - name: Create test evidence
         id: create-evd  
         run: |
