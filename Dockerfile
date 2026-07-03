@@ -1,4 +1,4 @@
-FROM node:22
+FROM node:24
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -8,6 +8,9 @@ RUN apt-get update && \
     apt-get clean
 #RUN curl -fL https://install-cli.jfrog.io | sh
 
+
+# allow to build the image if behind a vpn or proxy that intercepts SSL traffic
+RUN npm config set strict-ssl false
 # If you are building your code for production
 RUN npm i --omit dev
 EXPOSE 3000
