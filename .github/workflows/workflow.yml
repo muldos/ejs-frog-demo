@@ -32,9 +32,9 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3      
       - name: Install Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-            node-version: 18 
+            node-version: 24 
       - name: Setup JFrog CLI
         id: setup-cli
         uses: jfrog/setup-jfrog-cli@v4
