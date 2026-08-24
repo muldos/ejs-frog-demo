@@ -50,11 +50,12 @@ jobs:
         run: |
           jf rt bce 
           jf rt bag
-          jf npmc --repo-resolve dro-npm-remote
-          jf ca
-          jf npm cache clean --force
-          rm package-lock.json
+          #jf npmc --repo-resolve dro-npm-remote
+          
+          #jf npm cache clean --force
+          #rm package-lock.json
           jf npmc --repo-resolve dro-npm-unsecure-remote
+          jf ca
           jf npm i --omit dev 
           jf audit --npm --fail=false
       
