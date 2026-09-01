@@ -86,13 +86,13 @@ jobs:
         run: |  
           echo "digest=$(docker images --no-trunc --quiet ${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }})" >> $GITHUB_OUTPUT
           jf docker pull ${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
-          jf docker scan --fail=false  --threads=5 ${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }} --severity='HIGH,CRITICAL' --vuln --format=sarif > jfrog_docker_scan.sarif
-          sed -i s/"\"uri\": \"\""/"\"uri\": \"${{ vars.JF_URL }}\/${{ env.DOCKER_REPO }}\/${{ env.IMAGE_NAME }}:${{ github.run_number }}\""/g jfrog_docker_scan.sarif
-        # adding the built docker into the JFrog build info     
-      - name: Upload output to generate autofix
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: jfrog_docker_scan.sarif
+          #jf docker scan --fail=false  --threads=5 ${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }} --severity='HIGH,CRITICAL' --vuln --format=sarif > jfrog_docker_scan.sarif
+          #sed -i s/"\"uri\": \"\""/"\"uri\": \"${{ vars.JF_URL }}\/${{ env.DOCKER_REPO }}\/${{ env.IMAGE_NAME }}:${{ github.run_number }}\""/g jfrog_docker_scan.sarif
+          jf docker scan --fail=false  --threads=5 ${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }} --severity='HIGH,CRITICAL'# adding the built docker into the JFrog build info     
+      #- name: Upload output to generate autofix
+      #  uses: github/codeql-action/upload-sarif@v3
+      #  with:
+      #   sarif_file: jfrog_docker_scan.sarif
       - name: Scan build
         id: scan-build  
         run: |
