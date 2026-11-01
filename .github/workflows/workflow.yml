@@ -89,7 +89,7 @@ jobs:
           jf docker pull ${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
           #jf docker scan --fail=false  --threads=5 ${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }} --severity='HIGH,CRITICAL' --vuln --format=sarif > jfrog_docker_scan.sarif
           #sed -i s/"\"uri\": \"\""/"\"uri\": \"${{ vars.JF_URL }}\/${{ env.DOCKER_REPO }}\/${{ env.IMAGE_NAME }}:${{ github.run_number }}\""/g jfrog_docker_scan.sarif
-          jf docker scan --fail=false  --threads=5 ${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }} --severity='HIGH,CRITICAL'# adding the built docker into the JFrog build info     
+          JFROG_CLI_LOG_LEVEL=ERROR jf docker scan --fail=false  --threads=5 ${{ vars.JF_HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }} --severity='HIGH,CRITICAL'# adding the built docker into the JFrog build info     
       #- name: Upload output to generate autofix
       #  uses: github/codeql-action/upload-sarif@v3
       #  with:
